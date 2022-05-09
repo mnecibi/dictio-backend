@@ -34,7 +34,8 @@ defmodule Dictio.MixProject do
       {:tesla, "~> 1.4"},
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+      {:tzdata, "~> 1.1.1"},
     ]
   end
 end

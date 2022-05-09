@@ -1,26 +1,20 @@
 defmodule Dictio.Notion.Word do
 
-  def fetch_word_of_the_day(list) do
-    list
-    |> Enum.filter(fn w -> not_used_word(w) end)
-    |> Enum.map(fn w -> build(w) end)
-    |> Enum.random
-  end
-
   def build(word) do
     %{
+      "id" => fetch_id(word),
       "definition1" => fetch_property_text("definition1", word),
       "definition2" => fetch_property_text("definition2", word),
       "definition3" => fetch_property_text("definition3", word),
       "state" => fetch_property_text("state", word),
       "origin" => fetch_property_text("origin", word),
-      "info" => fetch_property_text("info", word),
+      "etymologie" => fetch_property_text("etymologie", word),
+      "notes" => fetch_property_text("notes", word),
+      "figure" => fetch_property_text("figure", word),
+      "wikitionnaire" => fetch_property_text("wikitionnaire", word),
       "word" => fetch_word_text(word)
     }
   end
-
-  def not_used_word(%{"properties" => %{"date" => _date}}), do: false
-  def not_used_word(_), do: true
 
   defp fetch_word_text(%{"properties" => %{"word" => %{ "title" => [%{ "plain_text" => word}]}}}), do: word
   defp fetch_word_text(_), do: ""
@@ -34,7 +28,6 @@ defmodule Dictio.Notion.Word do
     |> Map.get(property)
     |> fetch_rich_text
   end
-  defp fetch_property_text(_), do: ""
 
   defp fetch_id(%{"id" => id}) do
     id
