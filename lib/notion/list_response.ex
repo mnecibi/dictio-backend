@@ -1,5 +1,5 @@
 defmodule Dictio.Notion.ListResponse do
-  alias Dictio.Notion.{ListResponse, Response, Word}
+  alias Dictio.Notion.{ListResponse, Word}
 
   @moduledoc """
   API Response struct representing a list of objects.
